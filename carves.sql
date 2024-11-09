@@ -3,6 +3,7 @@ use carves;
 
 create table imoveis (
 	id_imovel int primary key auto_increment,
+    titulo varchar(60) not null,            #exemplo: Aquario
     endereco varchar(120) not null,
     preco int(8) not null,
     descricao varchar(300) not null,
