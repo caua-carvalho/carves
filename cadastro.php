@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Imóvel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script>
-        function formatarTelefone(input) {
-            let telefone = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-            if (telefone.length > 11) telefone = telefone.slice(0, 11); // Limita a 11 dígitos
-            // Adiciona máscara (XX) XXXXX-XXXX
-            if (telefone.length > 6) {
-                input.value = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7)}`;
-            } else if (telefone.length >= 2) {
-                input.value = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
-            } else {
-                input.value = telefone;
-            }
-        }
-    </script>
-</head>
+<?php include_once "header.html"; ?>
+
+<title>Cadastro de Imóvel</title>
+
 <body>
     <!-- Navbar -->
     <?php include_once "componentes/navbar.php"; ?>
