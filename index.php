@@ -1,49 +1,54 @@
+<?php
+require_once "conn.php";
+include_once "header.html";
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Imóveis Disponíveis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Imóveis disponíveis</h1>
 
-    <?php
-    // Conectar ao banco de dados
-    $servername = "localhost";
-    $username = "root";
-    $password = ""; // Insira a senha do seu banco de dados, se houver
-    $dbname = "carves";
+    <?php include_once "componentes/navbar.php"; ?>
 
-    // Criando a conexão
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Imóveis Disponíveis</h1>
+        
+        <div class="row">
+            <?php
+            // Consultando os imóveis
+            $sql = "SELECT id_imovel, endereco, preco, descricao, nome, telefone, email FROM imoveis";
+            $result = $conn->query($sql);
 
-    // Verificando a conexão
-    if ($conn->connect_error) {
-        die("Conexão falhou: " . $conn->connect_error);
-    }
+            // Exibindo os imóveis em cards
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<div class='col-md-4 mb-4'>";
+                    echo "<div class='card h-100'>";
+                    echo "<div class='card-body'>";
+                    echo "<h5 class='card-title'>" . $row['endereco'] . "</h5>";
+                    echo "<p class='card-text'>Preço: R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
+                    echo "<p class='card-text'>Descrição: " . $row['descricao'] . "</p>";
+                    echo "<p class='card-text'><strong>Contato:</strong> " . $row['nome'] . "<br>";
+                    echo "Telefone: " . $row['telefone'] . "<br>";
+                    echo "Email: " . $row['email'] . "</p>";
+                    echo "<a href='modelo_casa.php?id=" . $row['id_imovel'] . "' class='btn btn-primary'>Ver detalhes</a>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+            } else {
+                echo "<p class='text-center'>Nenhum imóvel encontrado.</p>";
+            }
 
-    // Consultando os imóveis
-    $sql = "SELECT id_imovel, endereco, preco, descricao, nome, telefone, email FROM imoveis";
-    $result = $conn->query($sql);
+            // Fechando a conexão
+            $conn->close();
+            ?>
+        </div>
+    </div>
 
-    // Exibindo os imóveis em cards
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<div style='border: 1px solid #ccc; padding: 10px; margin: 10px;'>";
-            echo "<h2>Endereço: " . $row['endereco'] . "</h2>";
-            echo "<p>Preço: R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
-            echo "<p>Descrição: " . $row['descricao'] . "</p>";
-            echo "<p>Contato: " . $row['nome'] . " - Telefone: " . $row['telefone'] . " - Email: " . $row['email'] . "</p>";
-            echo "<a href='imovel.php?id=" . $row['id_imovel'] . "'>Ver detalhes</a>";
-            echo "</div>";
-        }
-    } else {
-        echo "Nenhum imóvel encontrado.";
-    }
-
-    // Fechando a conexão
-    $conn->close();
-    ?>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -4,6 +4,6 @@ $usuario = "root";
 $senha = "";             
 $banco = "carves";   
 
-$conexao = new mysqli($servidor, $usuario, $senha, $banco);
+$conn = new mysqli($servidor, $usuario, $senha, $banco);
 
 ?>

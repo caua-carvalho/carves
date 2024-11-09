@@ -1,3 +1,32 @@
+<?php
+require_once "conn.php";
+
+// Obtendo o ID do imóvel pela URL
+$id = $_GET['id'];
+
+// Consultando o imóvel pelo ID
+$sql = "SELECT endereco, preco, descricao, nome, telefone, email FROM imoveis WHERE id_imovel = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Verificando se o imóvel foi encontrado
+if ($result->num_rows > 0) {    
+    $imovel = $result->fetch_assoc();
+} else {
+    echo "Imóvel não encontrado.";
+    exit;
+}
+
+// Fechando a conexão
+$stmt->close();
+$conn->close();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -39,15 +68,11 @@
 
             <!-- Informações do imóvel -->
             <div class="col-md-6">
-                <h2>Casa em Vila Nova</h2>
-                <p><strong>Endereço:</strong> Rua Exemplo, 123, Vila Nova, São Paulo - SP</p>
-                <p><strong>Preço:</strong> R$ 450.000,00</p>
+                <h2><?php echo $imovel['endereco']; ?></h2>
+                <p><strong>Endereço:</strong><?php echo $imovel['endereco']; ?></p>
+                <p><strong>Preço:</strong><?php echo $imovel['preco']; ?></p>
                 <p><strong>Descrição:</strong></p>
-                <p>
-                    Linda casa em bairro tranquilo, com 3 dormitórios, sendo 1 suíte, sala ampla, cozinha planejada, e
-                    área gourmet com churrasqueira. O imóvel possui garagem para 2 carros e um lindo jardim na frente.
-                    Perfeito para quem busca qualidade de vida e conforto!
-                </p>
+                <p><?php echo $imovel['descricao']; ?>d</p>
             </div>
         </div>
 
@@ -84,9 +109,9 @@
     <!-- Rodapé -->
     <footer>
         <h4>Informações do Corretor</h4>
-        <p><strong>Nome:</strong> João Silva</p>
-        <p><strong>Telefone:</strong> (11) 98765-4321</p>
-        <p><strong>Email:</strong> joao.silva@imobiliaria.com.br</p>
+        <p><strong>Nome:</strong><?php echo $imovel['nome']; ?></p>
+        <p><strong>Telefone:</strong><?php echo $imovel['telefone']; ?></p>
+        <p><strong>Email:</strong> <?php echo $imovel['email']; ?></p>
     </footer>
 
     <!-- Link do Bootstrap JavaScript (necessário para algumas funcionalidades como o modal) -->
