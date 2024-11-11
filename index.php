@@ -19,7 +19,7 @@ include_once "header.html";
         <div class="row">
             <?php
             // Consultando os imóveis
-            $sql = "SELECT id_imovel, endereco, preco, descricao, nome, telefone, email FROM imoveis";
+            $sql = "SELECT id_imovel, cidade, bairro, rua, preco, descricao, nome, telefone, email FROM imoveis";
             $result = $conn->query($sql);
 
             // Exibindo os imóveis em cards
@@ -28,13 +28,13 @@ include_once "header.html";
                     echo "<div class='col-md-4 mb-4'>";
                     echo "<div class='card h-100'>";
                     echo "<div class='card-body'>";
-                    echo "<h5 class='card-title'>" . $row['endereco'] . "</h5>";
+                    echo "<h5 class='card-title'>" . $row['cidade'] . ", " .  $row['bairro'] . ", " . $row['rua'] . "</h5>";
                     echo "<p class='card-text'>Preço: R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
                     echo "<p class='card-text'>Descrição: " . $row['descricao'] . "</p>";
                     echo "<p class='card-text'><strong>Contato:</strong> " . $row['nome'] . "<br>";
                     echo "Telefone: " . $row['telefone'] . "<br>";
                     echo "Email: " . $row['email'] . "</p>";
-                    echo "<a href='modelo_casa.php?id=" . $row['id_imovel'] . "' class='btn btn-primary'>Ver detalhes</a>";
+                    echo "<a href='imovel.php?id=" . $row['id_imovel'] . "' class='btn btn-primary'>Editar</a>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";

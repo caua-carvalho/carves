@@ -8,11 +8,26 @@
 
     <!-- Formulário de Cadastro de Imóvel -->
     <div class="container mt-5">
-        <h2>Cadastro de Imóvel</h2>
+        <div class="d-flex justify-content-center">
+            <h2>Cadastro de Imóvel</h2>
+        </div>
+
+        <br>
+
+        <h4>Informações do imovel</h4>
+
         <form action="cadastrar_imovel.php" method="POST">
             <div class="mb-3">
-                <label for="endereco" class="form-label">Endereço</label>
-                <input type="text" class="form-control" id="endereco" name="endereco" required>
+                <label for="cidade" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" required>
+            </div>
+            <div class="mb-3">
+                <label for="bairro" class="form-label">Bairro</label>
+                <input type="text" class="form-control" id="bairro" name="bairro" required>
+            </div>
+            <div class="mb-3">
+                <label for="rua" class="form-label">Rua</label>
+                <input type="text" class="form-control" id="rua" name="rua" required>
             </div>
             <div class="mb-3">
                 <label for="preco" class="form-label">Preço</label>
@@ -22,6 +37,9 @@
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
             </div>
+            <br>
+
+            <h4>Informações do Proprietario</h4>
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome do Contato</label>
                 <input type="text" class="form-control" id="nome" name="nome" required>
@@ -39,33 +57,5 @@
     </div>
 
     <!-- Modal de Sucesso -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
-                </div>
-                <div class="modal-body">
-                    O imóvel foi cadastrado com sucesso!
-                </div>
-                <div class="modal-footer">
-                    <a href="cadastro.php">
-                        <button type="button" class="btn btn-primary">OK</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Incluindo o JavaScript do Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Script PHP para exibir o modal após o cadastro bem-sucedido -->
-    <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
-    <script>
-        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-        successModal.show();
-    </script>
-    <?php endif; ?>
+    <?php include_once "componentes/modal_cadastro.php"; ?>
 </body>
-</html>
