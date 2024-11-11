@@ -1,5 +1,5 @@
 <?php
-require_once "conn.php";
+require_once "../conn.php";
 // Obtendo os dados do formulário
 $cidade = $_POST['cidade'];
 $bairro = $_POST['bairro'];

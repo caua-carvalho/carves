@@ -1,10 +1,10 @@
-<?php include_once "header.html"; ?>
+<?php include_once "../estilo/header.html"; ?>
 
 <title>Cadastro de Imóvel</title>
 
 <body>
     <!-- Navbar -->
-    <?php include_once "componentes/navbar.php"; ?>
+    <?php include_once "../componentes/navbar.php"; ?>
 
     <!-- Formulário de Cadastro de Imóvel -->
     <div class="container mt-5">
@@ -15,7 +15,7 @@
         <br>
 
         <h4>Informações do imovel</h4>
-
+        
         <form action="cadastrar_imovel.php" method="POST">
             <div class="mb-3">
                 <label for="cidade" class="form-label">Cidade</label>
@@ -57,5 +57,5 @@
     </div>
 
     <!-- Modal de Sucesso -->
-    <?php include_once "componentes/modal_cadastro.php"; ?>
+    <?php include_once "../componentes/modal_cadastro.php"; ?>
 </body>
