@@ -6,7 +6,6 @@ create table imoveis (
     titulo varchar(60) not null,            #exemplo: Aquario
     cidade varchar(100) not null,
     bairro varchar(100) not null,
-    rua varchar(100) not null,
     preco int(8) not null,
     descricao varchar(300) not null,
     nome varchar(90) not null,
