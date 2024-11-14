@@ -14,29 +14,31 @@ include_once "./estilo/header.html";
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h3 class="text-center mb-4">Encontre o seu imóvel ideal:</h3>
+            <h3 class="text-center mb-4">Filtrar por caracteristicas do imovel</h3>
             <form class="row g-3 d-flex justify-content-center" id="form" method="GET" action="">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="cidade" class="form-label">Cidade</label>
                     <?php include_once "./componentes/select_cidade.php"; ?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="valorMinimo" class="form-label">Valor Mínimo</label>
                     <input type="number" class="form-control" id="valorMinimo" name="valorMinimo" placeholder="R$">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="valorMaximo" class="form-label">Valor Máximo</label>
                     <input type="number" class="form-control" id="valorMaximo" name="valorMaximo" placeholder="R$">
                 </div>
-                <div class="col-md-3">
-                    <label for="metragem" class="form-label">Metragem</label>
-                    <select class="form-select" id="metragem" name="metragem">
-                        <option value="">Selecione</option>
-                        <option value="maior-que-80m2">Maior que 80m²</option>
-                        <option value="maior-que-120m2">Maior que 120m²</option>
-                    </select>
+                
+                <!-- INFORMAÇAO DO ANUNCIADOR -->
+                <div class="col-md-5">
+                    <label for="nome" class="form-label">Anunciador</label>
+                    <?php include_once "./componentes/select_anunciador.php"; ?>
                 </div>
-                <div class="col-md-3 d-flex align-items-center justify-content-center">
+                <div class="col-md-5">
+                    <label for="valorMinimo" class="form-label">email do anunciador</label>
+                    <?php include_once "./componentes/select_email_anunciador.php"; ?>
+                </div>
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
                     <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
                 </div>
             </form>
@@ -62,7 +64,11 @@ include_once "./estilo/header.html";
             }
             if (!empty($_GET['valorMaximo'])) {
                 $valorMaximo = (float) $_GET['valorMaximo'];
-                $sql .= " AND preco <= $valorMaximo";
+                $sql .= " AND preco <= " . "$valorMaximo";
+            }
+            if (!empty($_GET['valorMaximo'])) {
+                $valorMaximo = (float) $_GET['valorMaximo'];
+                $sql .= " AND preco <= " . "$valorMaximo";
             }
             if (!empty($_GET['metragem'])) {
                 $metragem = $_GET['metragem'];

@@ -1,13 +1,13 @@
-<select class="form-select" id="cidade" name="cidade">
+<select class="form-select" id="anunciador" name="cidade">
     <option value="">escolher cidade...</option>
     <?php
-    $sql = "SELECT cidade FROM imoveis WHERE 1=1";
+    $sql = "SELECT nome FROM imoveis WHERE 1=1";
 
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            echo "<option value='" . $row['cidade'] . "'>" . $row['cidade'] . "</option>";
+            echo "<option value='" . $row['nome'] . "'>" . $row['nome'] . "</option>";
         }
     } else {
         echo "<option value=''>Nenhuma cidade cadastrada...</option>";
