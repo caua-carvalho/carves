@@ -13,7 +13,7 @@ require_once "../conn.php"
     <?php include_once "../componentes/navbar_cadastro.php"; ?>
 
     <!-- Formulário de Cadastro de Imóvel -->
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="d-flex justify-content-center">
             <h2>Cadastro de Imóvel</h2>
         </div>
@@ -43,24 +43,6 @@ require_once "../conn.php"
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
             </div>
-            <!-- IMAGENS -->
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Imagem Principal:</label>
-                <input class="form-control" id="formFile" type="file" name="imagem_principal" required><br>
-            </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Imagem Secundária 1:</label>
-                <input class="form-control" id="formFile" type="file" name="imagem_secundaria_1"><br>
-            </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Imagem Secundária 2:</label>
-                <input class="form-control" id="formFile" type="file" name="imagem_secundaria_2"><br>
-            </div>
-            <div class="mb-3">
-                <label for="formFile" class="form-label">Imagem Secundária 3:</label>
-                <input class="form-control" id="formFile" type="file" name="imagem_secundaria_3"><br>
-            </div>
-            <br>
 
             <h4>Informações do Proprietario</h4>
             <div class="mb-3">
@@ -75,7 +57,7 @@ require_once "../conn.php"
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
-            <button type="submit" class="btn btn-primary">Cadastrar Imóvel</button>
+            <button type="submit" class="btn btn-primary mt-1">Cadastrar Imóvel</button>
         </form>
     </div>
 

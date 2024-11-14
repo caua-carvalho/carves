@@ -39,7 +39,7 @@ include_once "./estilo/header.html";
                     <?php include_once "./componentes/select_email_anunciador.php"; ?>
                 </div>
                 <div class="col-md-4 d-flex align-items-center justify-content-center">
-                    <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
+                    <button type="submit" class="btn btn-dark w-100">Pesquisar</button>
                 </div>
             </form>
         </div>

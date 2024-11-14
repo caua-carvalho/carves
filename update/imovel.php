@@ -29,7 +29,7 @@ $stmt->close();
 </head>
 <body>
 
-<?php include_once "../componentes/navbar.php"; ?>
+<?php include_once "../componentes/navbar_update.php"; ?>
 
 <div class="container my-5">
     <form action="imovel_update.php" method="POST">
@@ -38,7 +38,7 @@ $stmt->close();
         <!-- Detalhes do Imóvel -->
         <div class="row">
             <div class="col-md-6">
-                <img src="https://via.placeholder.com/600x400" alt="Casa à venda" class="img-fluid rounded">
+                <img src="../imagens/img_01.jpg" alt="Casa à venda" class="img-fluid rounded">
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
