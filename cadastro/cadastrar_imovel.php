@@ -1,55 +1,76 @@
 <?php
 require_once "../conn.php";
 
-// Obtendo os dados do formulário
-$cidade = $_POST['cidade'];
-$bairro = $_POST['bairro'];
-$rua = $_POST['rua'];
-$preco = $_POST['preco'];
-$descricao = $_POST['descricao'];
-$nome = $_POST['nome'];
-$telefone = str_replace([" ", "-", "(", ")"], "", $_POST['telefone']);
-$email = $_POST['email'];
+// Verificar se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Pega os dados do formulário
+    $titulo = trim($_POST['titulo']);
+    $cidade = trim($_POST['cidade']);
+    $bairro = trim($_POST['bairro']);
+    $rua = trim($_POST['rua']);
+    $preco = trim($_POST['preco']);
+    $descricao = trim($_POST['descricao']);
+    $nome = trim($_POST['nome']);
+    $telefone = trim($_POST['telefone']);
+    $telefone = preg_replace('/\D/', '', $telefone);
+    $email = trim($_POST['email']);
 
-// Função para salvar a imagem e retornar o caminho
-function salvarImagem($file, $destino) {
-    if ($file['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $nomeArquivo = uniqid() . '.' . $ext;
-        $caminhoCompleto = $destino . $nomeArquivo;
-
-        // Verifica se a pasta existe e move o arquivo
-        if (!file_exists($destino)) {
-            mkdir($destino, 0777, true); // Cria a pasta se não existir
-        }
-
-        if (move_uploaded_file($file['tmp_name'], $caminhoCompleto)) {
-            return $caminhoCompleto;
-        }
+    // Validar campos obrigatórios
+    if (empty($titulo) || empty($cidade) || empty($bairro) || empty($rua) || empty($preco) || empty($descricao) || empty($nome) || empty($telefone) || empty($email)) {
+        echo "Todos os campos são obrigatórios!";
+        exit;
     }
-    return null;
+
+    // Verificar se uma imagem foi enviada
+    if (isset($_FILES['img_main']) && $_FILES['img_main']['error'] === 0) {
+        $arquivo = $_FILES['img_main'];
+
+        // Verificar tipo de arquivo
+        $tipo_imagem = mime_content_type($arquivo['tmp_name']);
+        if (strpos($tipo_imagem, 'image') !== false) {
+            // Pasta de upload
+            $diretorio = "uploads/";
+
+            // Verificar se a pasta existe, se não, cria
+            if (!is_dir($diretorio)) {
+                mkdir($diretorio, 0777, true);
+            }
+
+            // Gerar um nome único e seguro para o arquivo
+            $nome_arquivo = bin2hex(random_bytes(8)) . "-" . basename($arquivo['name']);
+            $caminho_arquivo = $diretorio . $nome_arquivo;
+
+            // Mover o arquivo para o diretório de uploads
+            if (move_uploaded_file($arquivo['tmp_name'], $caminho_arquivo)) {
+                // Inserir dados no banco de dados de forma segura
+                $sql = "INSERT INTO imoveis (titulo, cidade, bairro, rua, preco, descricao, nome, telefone, email, img_main) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                if ($stmt === false) {
+                    echo "Erro ao preparar a consulta: " . $conn->error;
+                    exit;
+                }
+
+                // Bind parâmetros
+                $stmt->bind_param("ssssississ", $titulo, $cidade, $bairro, $rua, $preco, $descricao, $nome, $telefone, $email, $caminho_arquivo);
+
+                // Executar a query
+                if ($stmt->execute()) {
+                    header("Location: ./cadastro.php");
+                } else {
+                    echo "Erro ao cadastrar o imóvel: " . $stmt->error;
+                }
+                $stmt->close();
+            } else {
+                echo "Erro ao mover o arquivo para o diretório de uploads.";
+            }
+        } else {
+            echo "O arquivo enviado não é uma imagem válida.";
+        }
+    } else {
+        echo "Imagem não foi enviada ou houve erro no envio. Erro: " . $_FILES['img_main']['error'];
+    }
 }
 
-// Definindo o diretório de upload
-$destino = '../imagens/';
-$imagemPrincipal = salvarImagem($_FILES['imagem_principal'], $destino);
-$imagemSecundaria1 = salvarImagem($_FILES['imagem_secundaria_1'], $destino);
-$imagemSecundaria2 = salvarImagem($_FILES['imagem_secundaria_2'], $destino);
-$imagemSecundaria3 = salvarImagem($_FILES['imagem_secundaria_3'], $destino);
-
-// Inserindo os dados no banco de dados
-$sql = "INSERT INTO imoveis (cidade, bairro, rua, preco, descricao, nome, telefone, email, img_main, img_1, img_2, img_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssissssssss", $cidade, $bairro, $rua, $preco, $descricao, $nome, $telefone, $email, $imagemPrincipal, $imagemSecundaria1, $imagemSecundaria2, $imagemSecundaria3);
-
-if ($stmt->execute()) {
-    header("Location: cadastro.php?success=1");
-    exit();
-} else {
-    echo "Erro ao cadastrar o imóvel: " . $conn->error;
-}
-
-// Fechando a conexão
-$stmt->close();
 $conn->close();
 ?>

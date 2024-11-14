@@ -83,7 +83,7 @@ include_once "./estilo/header.html";
                     echo "<div class='col-md-4 mb-4'>";
                     echo "<div class='card h-100'>";
                     echo "<div class='card-body'>";
-                    echo "<img class='img-fluid rounded' src='./imagens/img_01.jpg' alt='Casa 1'>";
+                    echo "<img class='img-fluid rounded' src='./cadastro/" . $row['img_main'] . "' alt='Casa 1'>";
                     echo "<h5 class='card-title'>" . $row['cidade'] . ", " .  $row['bairro'] . ", " . $row['rua'] . "</h5>";
                     echo "<p class='card-text'><strong>Preço:</strong> R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
                     echo "<p class='card-text'><strong>Descrição:</strong> " . $row['descricao'] . "</p>";

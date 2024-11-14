@@ -1,11 +1,10 @@
 <?php 
-include_once "../estilo/header.html";
-require_once "../conn.php"
+    include_once "../estilo/header.html";
+    require_once "../conn.php";
 ?>
 
 <title>Cadastro de Imóvel</title>
 <head>
-
 </head>
 
 <body>
@@ -20,9 +19,13 @@ require_once "../conn.php"
 
         <br>
 
-        <h4>Informações do imovel</h4>
+        <h4>Informações do imóvel</h4>
         
-        <form action="cadastrar_imovel.php" method="POST">
+        <form action="cadastrar_imovel.php" method="POST" enctype="multipart/form-data"> <!-- Adicionando o enctype -->
+            <div class="mb-3">
+                <label for="titulo" class="form-label">Título</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" required>
+            </div>
             <div class="mb-3">
                 <label for="cidade" class="form-label">Cidade</label>
                 <input type="text" class="form-control" id="cidade" name="cidade" required>
@@ -44,7 +47,7 @@ require_once "../conn.php"
                 <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
             </div>
 
-            <h4>Informações do Proprietario</h4>
+            <h4>Informações do Proprietário</h4>
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome do Contato</label>
                 <input type="text" class="form-control" id="nome" name="nome" required>
@@ -57,6 +60,12 @@ require_once "../conn.php"
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
+
+            <div class="mb-3">
+                <label for="img_main">Imagem Principal:</label>
+                <input class="form-control" type="file" name="img_main" id="img_main" accept="image/*" required>
+            </div>
+
             <button type="submit" class="btn btn-primary mt-1">Cadastrar Imóvel</button>
         </form>
     </div>
