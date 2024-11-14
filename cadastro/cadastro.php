@@ -43,6 +43,23 @@ require_once "../conn.php"
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
             </div>
+            <!-- IMAGENS -->
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Imagem Principal:</label>
+                <input class="form-control" id="formFile" type="file" name="imagem_principal" required><br>
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Imagem Secundária 1:</label>
+                <input class="form-control" id="formFile" type="file" name="imagem_secundaria_1"><br>
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Imagem Secundária 2:</label>
+                <input class="form-control" id="formFile" type="file" name="imagem_secundaria_2"><br>
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Imagem Secundária 3:</label>
+                <input class="form-control" id="formFile" type="file" name="imagem_secundaria_3"><br>
+            </div>
             <br>
 
             <h4>Informações do Proprietario</h4>
