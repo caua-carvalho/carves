@@ -1,17 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container d-flex justify-content-center">
-        <a class="navbar-brand" href="../index.php">
-            <img src="./imagens/calves.png" alt="Logo" class="navbar-logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link text-center" href="cadastro/cadastro.php">Cadastro</a></li>
-                <li class="nav-item"><a class="nav-link text-center" href="#form">Editar</a></li>
-            </ul>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark container" style="border-radius: 0px 0px 15px 15px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../index.php">Carves</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
+        <a class="nav-link" href="./cadastro/cadastro.php">cadastro</a>
+      </div>
     </div>
+  </div>
 </nav>

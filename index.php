@@ -52,7 +52,7 @@ include_once "./estilo/header.html";
     <div class="row">
         <?php
             // Construindo a consulta SQL com filtros dinâmicos
-            $sql = "SELECT id_imovel, cidade, bairro, rua, preco, descricao, nome, telefone, email FROM imoveis WHERE 1=1";
+            $sql = "SELECT id_imovel, cidade, bairro, rua, preco, descricao, nome, telefone, email, img_main FROM imoveis WHERE 1=1";
             
             if (!empty($_GET['cidade'])) {
                 $cidade = $_GET['cidade'];
@@ -86,6 +86,7 @@ include_once "./estilo/header.html";
                     echo "<div class='col-md-4 mb-4'>";
                     echo "<div class='card h-100'>";
                     echo "<div class='card-body'>";
+                    echo "<img src='" . $row['img_main'] . "' alt='Casa 1'>";
                     echo "<h5 class='card-title'>" . $row['cidade'] . ", " .  $row['bairro'] . ", " . $row['rua'] . "</h5>";
                     echo "<p class='card-text'>Preço: R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
                     echo "<p class='card-text'>Descrição: " . $row['descricao'] . "</p>";

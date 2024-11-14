@@ -17,8 +17,15 @@ function salvarImagem($file, $destino) {
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $nomeArquivo = uniqid() . '.' . $ext;
         $caminhoCompleto = $destino . $nomeArquivo;
-        move_uploaded_file($file['tmp_name'], $caminhoCompleto);
-        return $caminhoCompleto;
+
+        // Verifica se a pasta existe e move o arquivo
+        if (!file_exists($destino)) {
+            mkdir($destino, 0777, true); // Cria a pasta se não existir
+        }
+
+        if (move_uploaded_file($file['tmp_name'], $caminhoCompleto)) {
+            return $caminhoCompleto;
+        }
     }
     return null;
 }
