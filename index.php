@@ -7,9 +7,6 @@ include_once "./estilo/header.html";
 <!-- Navbar -->
 <?php include_once "./componentes/navbar_home.php"; ?>
 
-<!-- Carrossel de Imagens -->
-
-
 <!-- FILTROS -->
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -88,11 +85,11 @@ include_once "./estilo/header.html";
                     echo "<div class='card-body'>";
                     echo "<img class='img-fluid rounded' src='./imagens/img_01.jpg' alt='Casa 1'>";
                     echo "<h5 class='card-title'>" . $row['cidade'] . ", " .  $row['bairro'] . ", " . $row['rua'] . "</h5>";
-                    echo "<p class='card-text'>Preço: R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
-                    echo "<p class='card-text'>Descrição: " . $row['descricao'] . "</p>";
+                    echo "<p class='card-text'><strong>Preço:</strong> R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
+                    echo "<p class='card-text'><strong>Descrição:</strong> " . $row['descricao'] . "</p>";
                     echo "<p class='card-text'><strong>Contato:</strong> " . $row['nome'] . "<br>";
-                    echo "Telefone: " . $row['telefone'] . "<br>";
-                    echo "Email: " . $row['email'] . "</p>";
+                    echo "<strong>Telefone:</strong> " . $row['telefone'] . "<br>";
+                    echo "<strong>Email:</strong> " . $row['email'] . "</p>";
                     echo "<a href='./update/imovel.php?id=" . $row['id_imovel'] . "' class='btn btn-primary'>Editar</a> ";
                     echo "<a href='./delete/delete_imovel.php?id=" . $row['id_imovel'] . "' class='btn btn-danger' onclick=\"return confirm('Tem certeza que deseja excluir este imóvel?')\">Excluir</a>";
                     echo "</div>";
