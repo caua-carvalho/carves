@@ -29,12 +29,7 @@ $stmt->close();
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Detalhes do Imóvel</a>
-        <!-- Formulário completo com o botão de salvar -->
-    </div>
-</nav>
+<?php include_once "../componentes/navbar.php"; ?>
 
 <div class="container my-5">
     <form action="imovel_update.php" method="POST">

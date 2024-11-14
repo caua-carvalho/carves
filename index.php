@@ -5,7 +5,7 @@ include_once "./estilo/header.html";
 ?>
 
 <!-- Navbar -->
-<?php include_once "./componentes/navbar.php"; ?>
+<?php include_once "./componentes/navbar_home.php"; ?>
 
 <!-- Carrossel de Imagens -->
 
@@ -86,7 +86,7 @@ include_once "./estilo/header.html";
                     echo "<div class='col-md-4 mb-4'>";
                     echo "<div class='card h-100'>";
                     echo "<div class='card-body'>";
-                    echo "<img src='" . $row['img_main'] . "' alt='Casa 1'>";
+                    echo "<img class='img-fluid rounded' src='./imagens/img_01.jpg' alt='Casa 1'>";
                     echo "<h5 class='card-title'>" . $row['cidade'] . ", " .  $row['bairro'] . ", " . $row['rua'] . "</h5>";
                     echo "<p class='card-text'>Preço: R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
                     echo "<p class='card-text'>Descrição: " . $row['descricao'] . "</p>";

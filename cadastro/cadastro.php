@@ -10,7 +10,7 @@ require_once "../conn.php"
 
 <body>
     <!-- Navbar -->
-    <?php include_once "../componentes/navbar.php"; ?>
+    <?php include_once "../componentes/navbar_cadastro.php"; ?>
 
     <!-- Formulário de Cadastro de Imóvel -->
     <div class="container mt-5">
