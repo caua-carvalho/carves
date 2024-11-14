@@ -1,5 +1,5 @@
 <?php
-require_once "conn.php";
+require_once "../conn.php";
 
 // Verificação dos dados enviados
 var_dump($_POST);
@@ -25,7 +25,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("sssdssssi", $cidade, $bairro, $rua, $preco, $descricao, $nome, $telefone, $email, $id);
 
 if ($stmt->execute()) {
-    header("Location: index.php?success=1");
+    header("Location: ../index.php?success=1");
 } else {
     echo "Erro ao atualizar o imóvel.";
 }

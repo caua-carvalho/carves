@@ -1,5 +1,5 @@
 <?php
-require_once "conn.php";
+require_once "../conn.php";
 
 $id = $_GET['id'];
 
@@ -90,7 +90,7 @@ $stmt->close();
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<?php include_once "componentes/modal_update.php"; ?>
+<?php include_once "../componentes/modal_update.php"; ?>
 
 </body>
 </html>
