@@ -11,7 +11,6 @@ create table imoveis (
     descricao varchar(300) not null,
     nome varchar(90) not null,
     telefone int(11) not null,
-    email varchar(60) not null,
-    img_main varchar(355) not null
+    email varchar(60) not null
 );
     
