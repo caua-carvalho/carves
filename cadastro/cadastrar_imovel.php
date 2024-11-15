@@ -4,7 +4,6 @@ require_once "../conn.php";
 // Verificar se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Pega os dados do formulário
-    $titulo = trim($_POST['titulo']);
     $cidade = trim($_POST['cidade']);
     $bairro = trim($_POST['bairro']);
     $rua = trim($_POST['rua']);
@@ -16,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = trim($_POST['email']);
 
     // Validar campos obrigatórios
-    if (empty($titulo) || empty($cidade) || empty($bairro) || empty($rua) || empty($preco) || empty($descricao) || empty($nome) || empty($telefone) || empty($email)) {
+    if (empty($cidade) || empty($bairro) || empty($rua) || empty($preco) || empty($descricao) || empty($nome) || empty($telefone) || empty($email)) {
         echo "Todos os campos são obrigatórios!";
         exit;
     }
@@ -29,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tipo_imagem = mime_content_type($arquivo['tmp_name']);
         if (strpos($tipo_imagem, 'image') !== false) {
             // Pasta de upload
-            $diretorio = "uploads/";
+            $diretorio = "../uploads/";
 
             // Verificar se a pasta existe, se não, cria
             if (!is_dir($diretorio)) {
@@ -43,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Mover o arquivo para o diretório de uploads
             if (move_uploaded_file($arquivo['tmp_name'], $caminho_arquivo)) {
                 // Inserir dados no banco de dados de forma segura
-                $sql = "INSERT INTO imoveis (titulo, cidade, bairro, rua, preco, descricao, nome, telefone, email, img_main) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO imoveis (cidade, bairro, rua, preco, descricao, nome, telefone, email, img_main) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($sql);
                 if ($stmt === false) {
                     echo "Erro ao preparar a consulta: " . $conn->error;
@@ -52,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
 
                 // Bind parâmetros
-                $stmt->bind_param("ssssississ", $titulo, $cidade, $bairro, $rua, $preco, $descricao, $nome, $telefone, $email, $caminho_arquivo);
+                $stmt->bind_param("sssississ", $cidade, $bairro, $rua, $preco, $descricao, $nome, $telefone, $email, $caminho_arquivo);
 
                 // Executar a query
                 if ($stmt->execute()) {
