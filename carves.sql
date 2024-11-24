@@ -3,7 +3,7 @@ use carves;
 
 create table imoveis (
 	id_imovel int primary key auto_increment,
-    titulo varchar(60) not null,            #exemplo: Aquario
+    titulo varchar(60) not null,
     cidade varchar(100) not null,
     bairro varchar(100) not null,
     rua varchar(100) not null,

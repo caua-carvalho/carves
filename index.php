@@ -86,7 +86,7 @@ include_once "./estilo/header.html";
                     echo "<img class='img-fluid rounded' src='./cadastro/" . $row['img_main'] . "' alt='Casa 1'>";
                     echo "<h5 class='card-title mt-2'>" . $row['cidade'] . ", " .  $row['bairro'] . ", " . $row['rua'] . "</h5>";
                     echo "<p class='card-text'><strong>Preço:</strong> R$ " . number_format($row['preco'], 2, ',', '.') . "</p>";
-                    echo "<p class='card-text'><strong>Descrição:</strong> " . $row['descricao'] . "</p>";
+                    echo "<p class='card-text'><strong>Descrição:</strong> " . mb_strimwidth($row['descricao'], 0, 100, '...') . "</p>";
                     echo "<p class='card-text'><strong>Contato:</strong> " . $row['nome'] . "<br>";
                     echo "<strong>Telefone:</strong> " . $row['telefone'] . "<br>";
                     echo "<strong>Email:</strong> " . $row['email'] . "</p>";
